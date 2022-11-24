@@ -1,0 +1,25 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+*/Release
+*/Debug
+CodeDB
+*.old
+*.db
+*.opendb
+*/VisualGDBCache
+*.DS_Store
+*.user
+
+gcc_Debug.h
+gcc_Release.h
+
+gcc_DebugJet.h
+gcc_ReleaseJet.h
+
+
+DotNet/DotNetSamples/.vs
+.visualgdb
+DebugJet

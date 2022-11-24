@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{b7c24114-c82b-463b-92bd-c2528a88c6f1}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{9b247e17-ce80-4971-bc42-9f04151894af}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{b7c75b78-528e-406f-a518-4ed93f514538}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{7cbff5b1-0566-482d-a53e-5f606183b26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{43a7419d-c6c8-4d7f-bc4e-f9c2aa5ea39d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="wiringGpioExtensions-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="wiringGpioExtensions-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <ClCompile Include="MotorWithRotaryEncoder.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="RotaryEncoder.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenSegDisplayDriver.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="StepDriver.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtensions.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MotorWithRotaryEncoder.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="RotaryEncoder.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenSegDisplayDriver.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="StepDriver.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="wiringGpioExtensions.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeExtensionMethods.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringExtensionMethods.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="wiringGpioExtension_RotaryEncoder.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtension_Pca9685.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtension_SevenSegDisplay.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtension_StepperMotor.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtension_MotorWithRotaryEncoder.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="wiringGpioExtension_Mcp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

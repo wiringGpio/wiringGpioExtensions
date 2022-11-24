@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugJet|Win32">
+      <Configuration>DebugJet</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseJet|Win32">
+      <Configuration>ReleaseJet</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{E60990D8-B022-4149-85AA-1097493C15AE}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugJet|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseJet|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="VisualGDBPackageDefinitions">
+    <ToolchainID>com.sysprogs.toolchain.default-gcc</ToolchainID>
+  </PropertyGroup>
+  <ImportGroup Label="VisualGDBFindComponents">
+    <Import Project="$(LOCALAPPDATA)\VisualGDB\FindComponents.props" />
+  </ImportGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugJet|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseJet|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)wiringGpioExtensions-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugJet|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_DebugJet.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)wiringGpioExtensions-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_DebugJet;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)wiringGpioExtensions-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseJet|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu\c++\7;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\c++\7\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include\aarch64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\nanoDev\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_ReleaseJet.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)wiringGpioExtensions-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_ReleaseJet;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="Logging.cpp" />
+    <ClCompile Include="MotorWithRotaryEncoder.cpp" />
+    <ClCompile Include="RotaryEncoder.cpp" />
+    <ClCompile Include="SevenSegDisplayDriver.cpp" />
+    <ClCompile Include="StepDriver.cpp" />
+    <ClCompile Include="Thread.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="wiringGpioExtensions.cpp" />
+    <ClCompile Include="wiringGpioExtension_Mcp.cpp" />
+    <ClCompile Include="wiringGpioExtension_MotorWithRotaryEncoder.cpp" />
+    <ClCompile Include="wiringGpioExtension_Pca9685.cpp" />
+    <ClCompile Include="wiringGpioExtension_RotaryEncoder.cpp" />
+    <ClCompile Include="wiringGpioExtension_SevenSegDisplay.cpp" />
+    <ClCompile Include="wiringGpioExtension_StepperMotor.cpp" />
+    <ClInclude Include="StringExtensionMethods.h" />
+    <ClInclude Include="MotorWithRotaryEncoder.h" />
+    <ClInclude Include="RotaryEncoder.h" />
+    <ClInclude Include="SevenSegDisplayDriver.h" />
+    <ClInclude Include="StepDriver.h" />
+    <ClInclude Include="Thread.h" />
+    <ClInclude Include="TimeExtensionMethods.h" />
+    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="wiringGpioExtensions.h" />
+    <None Include="Makefile" />
+    <None Include="debug.mak" />
+    <None Include="release.mak" />
+    <None Include="wiringGpioExtensions-Debug.vgdbsettings" />
+    <None Include="wiringGpioExtensions-Release.vgdbsettings" />
+  </ItemGroup>
+</Project>
