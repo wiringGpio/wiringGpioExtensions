@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <VisualGDBProjectSettings2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ConfigurationName>DebugJet</ConfigurationName>
+  <ConfigurationName>Debug</ConfigurationName>
   <Project xsi:type="com.visualgdb.project.linux">
     <CustomSourceDirectories>
       <Directories />
@@ -8,9 +8,9 @@
     </CustomSourceDirectories>
     <AutoProgramSPIFFSPartition>true</AutoProgramSPIFFSPartition>
     <BuildHost>
-      <HostName>nanoDev</HostName>
+      <HostName>rpi</HostName>
       <Transport>SSH</Transport>
-      <UserName>nano</UserName>
+      <UserName>pi</UserName>
     </BuildHost>
     <MainSourceTransferCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
@@ -20,7 +20,7 @@
         <UserName>pi</UserName>
       </RemoteHost>
       <LocalDirectory>$(ProjectDir)</LocalDirectory>
-      <RemoteDirectory>/home/nano/Source/VwiringGpioExtensions/wiringGpioExtensions</RemoteDirectory>
+      <RemoteDirectory>/home/pi/Source/VwiringGpioExtensions/wiringGpioExtensions</RemoteDirectory>
       <FileMasks>
         <string>*.cpp</string>
         <string>*.h</string>

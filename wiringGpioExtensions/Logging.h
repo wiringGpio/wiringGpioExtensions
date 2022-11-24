@@ -1,6 +1,7 @@
 #pragma once
+#include <string>
 
-#include "WiringPiExtensionApi.h"
+#include <wiringGpioLogging.h>
 
 // Logging Callback
 extern wiringGpioLoggingCallback LogFunction;

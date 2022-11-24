@@ -85,6 +85,12 @@ extern "C" {
 //
 #pragma region GPIO
 	
+	//  Node management
+	extern int WiringGpioGetPinBaseForNode(int pin);
+	
+	extern int WiringGpioGetFileDescriptorForNode(int pin);
+	
+	
 	//  Basic GPIO
 	extern void PinMode(int pin, int mode);
 
@@ -179,9 +185,9 @@ extern "C" {
 //
 #pragma region MCP300x
 	
-	extern int Mcp3004Setup(int bus, int pinBase, int spiChannel);
+	extern int Mcp3004Setup(int pinBase, int spiChannel);
 	
-	extern int Mcp3008Setup(int bus, int pinBase, int spiChannel);
+	extern int Mcp3008Setup(int pinBase, int spiChannel);
 
 #pragma endregion
 
@@ -437,8 +443,8 @@ extern "C" {
 	//  Log Level
 	extern wiringGpioLogLevel LoggingLevel;
 
-	extern void wiringGpioSetLoggingCallback(wiringGpioLoggingCallback);
-	extern void wiringGpioSetLoggingLevel(wiringGpioLogLevel level);
+	extern void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback);
+	extern void WiringGpioSetLoggingLevel(wiringGpioLogLevel level);
 
 	//  Log functions
 	void Log(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);

@@ -54,6 +54,12 @@
     <ClCompile Include="wiringGpioExtensions.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <None Include="debugjet.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="releasejet.mak">
+      <Filter>Make files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

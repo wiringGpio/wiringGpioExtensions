@@ -3,9 +3,13 @@
 ################################################################################
 
 /.vs
-*/Release
-*/Debug
+Release/
+Debug/
+DebugJet/
+ReleaseJet/
+
 CodeDB
+
 *.old
 *.db
 *.opendb
@@ -20,6 +24,7 @@ gcc_DebugJet.h
 gcc_ReleaseJet.h
 
 
-DotNet/DotNetSamples/.vs
+*/.vs
 .visualgdb
-DebugJet
+
+

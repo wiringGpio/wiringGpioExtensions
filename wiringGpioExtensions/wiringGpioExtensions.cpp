@@ -25,7 +25,7 @@ map<int, int> SoftPwmThreads;
 
 
 
-void wiringGpioSetLoggingCallback(wiringGpioLoggingCallback function)
+void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback function)
 {
 	//  set our callback function
 	LogFunction = function;
@@ -138,6 +138,16 @@ int GetPinBaseForNode(int pin)
 //  GPIO Pin Control
 //
 #pragma region GPIO
+
+int WiringGpioGetPinBaseForNode(int pin)
+{
+	return wiringPiGetPinBaseForNode(pin);
+}
+	
+int WiringGpioGetFileDescriptorForNode(int pin)
+{
+	return wiringPiGetFileDescriptorForNode(pin);
+}
 
 void PinMode(int pin, int mode)
 {
