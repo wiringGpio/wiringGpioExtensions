@@ -24,7 +24,7 @@ The wiringGpioExtensions library also provides a number of additional driver met
 -   ...
   
 
-To use the library with Raspberry Pi, build with `make CONFIG=Release`, and install with `sudo make CONFIG=Release install`.  Add `-lwiringGpioExtensions -lwiringPi -lpthread` to your linker settings.
+To use the library with Raspberry Pi, build with `make CONFIG=Release`, and install with `sudo make CONFIG=Release install`.  In your program, `#include <wiringGpioExtensions.h>` and add `-lwiringGpioExtensions -lwiringPi -lpthread` to your linker settings.
   
-To use with NVIDIA Jetson, build with `make CONFIG=ReleaseJet`, and install with `sudo make CONFIG=ReleaseJet install`.  Add `-lwiringGpioExtensions -lwiringJet -lpthread` to your linker settings.
+To use with NVIDIA Jetson, build with `make CONFIG=ReleaseJet`, and install with `sudo make CONFIG=ReleaseJet install`.  In your program, `#include <wiringGpioExtensions.h>` and add `-lwiringGpioExtensions -lwiringJet -lpthread` to your linker settings.
 
