@@ -238,5 +238,5 @@ install:
 
 	echo "[Executing ldconfig ...]"
 	ldconfig
-	ldconfig -p | grep libWiringGpioExtensions.so
+	ldconfig -p | grep libwiringGpioExtensions.so
 #VisualGDB: GeneratedRules				#<--- All lines below are auto-generated. Remove this line to suppress auto-generation of file rules.
