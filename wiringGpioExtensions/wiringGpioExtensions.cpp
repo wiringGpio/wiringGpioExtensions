@@ -72,15 +72,16 @@ int WiringGpioSetupSys()
 
 int WiringGpioSetupPhys()
 {
-	//  TODO remove logging test
+	/* Test logging callback for all log levels
 	AddLog(LogLevelTrace,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelTrace");
 	AddLog(LogLevelDebug,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelDebug");
 	AddLog(LogLevelInfo,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelInfo");
 	AddLog(LogLevelWarn,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelWarn");
 	AddLog(LogLevelError,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelError");
 	AddLog(LogLevelFatal,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelFatal");
+	*/
 
-	return wiringPiSetupPhys();
+	return wiringPiSetupPhys();
 }
 
 
