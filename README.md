@@ -1,12 +1,30 @@
-Wiring Pi Extension
--------------------
+  
+# wiringGpioExtensions
 
-A C++ library extending Gordon Henderson's wiringPi library (http://wiringpi.com).  
+A library to provide a single interface for GPIO control code that can be built for the Raspberry Pi or the NVIDIA Jetson simply by changing the linker settings.
 
-The Wiring Pi Extension provides a single API to access all of the wiringPi library, plus the following extensions:
+The wiringGpioExtensions library interface mimics the wiringPi library. Most function names are the same as wiringPi except with a capital first letter. Function names starting with `wiringPi*` are  renamed to `wiringGpio*`. For example:
 
-* Stepper motor driver
-* Seven segment display driver
-* PCA9685 PWM chip drivers 
- (using Reinhard Sprung's code https://github.com/Reinbert/pca9685)
-* Rotary encoder
+    main()
+    {
+	    WiringGpioSetupPhys();  // call instead of wiringPiSetupPhys()
+	    PinMode(15, PINMODE_OUTPUT);  // call instead of pinMode()
+	    DigitalWrite(15,1); // call instead of digitalWrite()
+	    Mcp23017Setup(1,100,0x20);	// call instead of mcp23017Setup()
+	    DigitalWrite(101,1);		// you get the idea ...    
+    }
+
+  
+The wiringGpioExtensions library also provides a number of additional driver methods, such as:
+
+-   Unipolar and bipolar stepper motor
+-   Rotary encoder
+-   Motor with rotary encoder
+-   Seven segment display
+-   ...
+  
+
+To use the library with Raspberry Pi, build with `make CONFIG=Release`, and install with `sudo make CONFIG=Release install`.  In your program, `#include <wiringGpioExtensions.h>` and add `-lwiringGpioExtensions -lwiringPi -lpthread` to your linker settings.
+  
+To use with NVIDIA Jetson, build with `make CONFIG=ReleaseJet`, and install with `sudo make CONFIG=ReleaseJet install`.  In your program, `#include <wiringGpioExtensions.h>` and add `-lwiringGpioExtensions -lwiringJet -lpthread` to your linker settings.
+
