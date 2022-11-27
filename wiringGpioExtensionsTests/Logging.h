@@ -3,10 +3,10 @@
 
 
 //  Log level
-extern wiringGpioLogLevel LoggingLevel;
+extern wiringGpioLogLevel LogLevel;
 
 void WriteLogToConsole(wiringGpioLogEvent log);
 
-void Log(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);
+void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);
 
-void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...);
+void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...);

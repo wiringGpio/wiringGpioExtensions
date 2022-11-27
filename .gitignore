@@ -23,8 +23,8 @@ gcc_Release.h
 gcc_DebugJet.h
 gcc_ReleaseJet.h
 
-
-*/.vs
+obj/
+.vs/
 .visualgdb
 
 

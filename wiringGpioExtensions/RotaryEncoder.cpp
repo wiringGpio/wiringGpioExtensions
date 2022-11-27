@@ -37,7 +37,7 @@ RotaryEncoder::RotaryEncoder(int pinA, int pinB, int pinIndex, int countsPerRevo
 	
 	TicksPerRevolution = countsPerRevolution*4;
 	
-	LogFormatted(LogLevelInfo, "RotaryEncoder", "RotaryEncoder", "Setup rotary encoder %d. Pin A %d. Pin B %d. Pin index %d", pinA, pinB, pinIndex);
+	AddLogFormatted(LogLevelInfo, "RotaryEncoder", "RotaryEncoder", "Setup rotary encoder %d. Pin A %d. Pin B %d. Pin index %d", pinA, pinB, pinIndex);
 }
 
 
@@ -88,7 +88,7 @@ void RotaryEncoder::SetupEncoderPins(int pinA, int pinB, int pinIndexCounter)
 		PullUpDnControl(PinIndexCounter, PULLUPDN_UP);
 	}
 	
-	LogFormatted(LogLevelInfo, "RotaryEncoder", "SetupEncoderPins", "Pin A: %d  Pin B: %d  Pin Index: %d", PinA, PinB, PinIndexCounter);
+	AddLogFormatted(LogLevelInfo, "RotaryEncoder", "SetupEncoderPins", "Pin A: %d  Pin B: %d  Pin Index: %d", PinA, PinB, PinIndexCounter);
 }
 
 
@@ -162,7 +162,7 @@ void RotaryEncoder::CalculateTickFrequency()
 		TickFrequencySampleLastTime = now;
 		TickFrequencySampleLastTickCount = TickCount;
 		
-		//Log("RotaryEncoder", "CalculateTickFrequency", format("Encoder TickFrequency: %.1lf CountFrequency: %.1lf  RPM %.2lf.", TickFrequency, GetCountFrequency(), GetRpm()), LogLevelTrace);
+		//AddLog("RotaryEncoder", "CalculateTickFrequency", format("Encoder TickFrequency: %.1lf CountFrequency: %.1lf  RPM %.2lf.", TickFrequency, GetCountFrequency(), GetRpm()), LogLevelTrace);
 	}
 	
 }

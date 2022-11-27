@@ -32,11 +32,11 @@ int SevenSegDisplaySampleMain(int argc, char *argv[])
 	if (display >= 0)
 	{
 		sevenSegDrivers.push_back(display);
-		LogFormatted(LogLevelInfo, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Created display %d from XML %s", display, segDisplay1.c_str());
+		AddLogFormatted(LogLevelInfo, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Created display %d from XML %s", display, segDisplay1.c_str());
 	}
 	else
 	{
-		LogFormatted(LogLevelError, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Failed to create display %s", segDisplay1.c_str());
+		AddLogFormatted(LogLevelError, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Failed to create display %s", segDisplay1.c_str());
 	}
 
 #ifdef DISPLAY2
@@ -55,11 +55,11 @@ int SevenSegDisplaySampleMain(int argc, char *argv[])
 	if (display >= 0)
 	{
 		sevenSegDrivers.push_back(display);
-		LogFormatted(LogLevelInfo, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Created display %d from segment/digit arrays", display);
+		AddLogFormatted(LogLevelInfo, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Created display %d from segment/digit arrays", display);
 	}
 	else
 	{
-		LogFormatted(LogLevelError, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Failed to create display from int arrays. %d", display);
+		AddLogFormatted(LogLevelError, "SevenSegDisplaySamnple.cpp", "SevenSegDisplaySampleMain", "Failed to create display from int arrays. %d", display);
 	}
 #endif
 	

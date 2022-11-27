@@ -67,9 +67,9 @@ void WriteLogToConsole(wiringGpioLogEvent log)
 
 //  Log function for the test app
 //
-void Log(wiringGpioLogLevel level, const char* sender, const char* function, const char* data)
+void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data)
 {
-	if (level >= LoggingLevel)
+	if (level >= LogLevel)
 	{
 		wiringGpioLogEvent logItem;
 		logItem.LogUnixTimeMilliseconds = GetUnixTimeMilliseconds();
@@ -86,9 +86,9 @@ void Log(wiringGpioLogLevel level, const char* sender, const char* function, con
 
 //  Log function for the test app with string format
 //
-void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...)
+void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...)
 {
-	if (level >= LoggingLevel)
+	if (level >= LogLevel)
 	{
 		char* data;
 		va_list args;
@@ -98,18 +98,18 @@ void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* func
 		va_end(args);
 
 		if (data) {
-			Log(level, sender, function, data);
+			AddLog(level, sender, function, data);
 			free(data);
 		}
 		else {
-			Log(LogLevelWarn, sender, function, "Error while logging a message: Memory allocation failed.");
+			AddLog(LogLevelWarn, sender, function, "Error while logging a message: Memory allocation failed.");
 		}
 	}
 }
 
 
 //  Log level
-wiringGpioLogLevel LoggingLevel = LogLevelAll;
+wiringGpioLogLevel LogLevel = LogLevelAll;
 
 
 

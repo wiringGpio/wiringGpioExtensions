@@ -7,11 +7,13 @@
 #include <sys/time.h>
 #include <stdarg.h>
 
-#include "wiringJet.h"
+#ifdef JETSON
+#include <wiringJet.h>
+#else#include <wiringPi.h>
+# endif
 
-
-wiringGpioLoggingCallback LogFunction = 0x00;
-wiringGpioLogLevel LoggingLevel = LogLevelAll;
+wiringGpioLoggingCallback LoggingFunction = 0x00;
+wiringGpioLogLevel LogLevel = LogLevelAll;
 
 
 //  Get the unix time in long long milliseconds
@@ -27,9 +29,9 @@ unsigned long long GetUnixTimeMilliseconds()
 
 //  Log Function
 //
-void Log(wiringGpioLogLevel level, const char* sender, const char* function, const char* data)
+void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data)
 {
-	if (LogFunction && level >= LoggingLevel)
+	if (LoggingFunction && level >= LogLevel)
 	{
 		wiringGpioLogEvent logItem;
 		logItem.LogUnixTimeMilliseconds = GetUnixTimeMilliseconds();
@@ -39,16 +41,16 @@ void Log(wiringGpioLogLevel level, const char* sender, const char* function, con
 		logItem.Function = function;
 		logItem.Data = data;
 		
-		LogFunction(logItem);
+		LoggingFunction(logItem);
 	}
 }
 
 
 //  Log function with string format
 //
-void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...)
+void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...)
 {
-	if (LogFunction && level >= LoggingLevel)
+	if (LoggingFunction && level >= LogLevel)
 	{
 		char* data;
 		va_list args;
@@ -60,12 +62,12 @@ void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* func
 
 		if (data) 
 		{
-			Log(level, sender, function, data);
+			AddLog(level, sender, function, data);
 			free(data);
 		}
 		else 
 		{
-			Log(LogLevelWarn, sender, function, "Error while logging a message: Memory allocation failed.");
+			AddLog(LogLevelWarn, sender, function, "Error while logging a message: Memory allocation failed.");
 		}
 	}
 }

@@ -230,7 +230,13 @@ $(BINARYDIR)/%.o : %.cxx $(all_make_files) |$(BINARYDIR)
 	
 #Install
 install:
-	cp $(BINARYDIR)/libWiringPiExtension.so /usr/local/lib
-	cp WiringPiExtensionApi.h /usr/local/include
-	ln -sf /usr/local/lib/libWiringPiExtension.so /usr/lib/libWiringPiExtension.so
+	echo "[Install Headers ...]"
+	install -m 0644 wiringGpioExtensions.h /usr/include
+
+	echo "[Install Lib ...]"
+	install -m 0755 $(BINARYDIR)/libwiringGpioExtensions.so /usr/lib
+
+	echo "[Executing ldconfig ...]"
+	ldconfig
+	ldconfig -p | grep libWiringGpioExtensions.so
 #VisualGDB: GeneratedRules				#<--- All lines below are auto-generated. Remove this line to suppress auto-generation of file rules.

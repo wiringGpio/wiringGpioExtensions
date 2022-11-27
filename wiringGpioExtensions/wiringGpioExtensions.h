@@ -438,17 +438,17 @@ extern "C" {
 #include <wiringGpioLogging.h>
 
 	// Logging Callback
-	extern wiringGpioLoggingCallback LogFunction;
+	extern wiringGpioLoggingCallback LoggingFunction;
 
 	//  Log Level
-	extern wiringGpioLogLevel LoggingLevel;
+	extern wiringGpioLogLevel LogLevel;
 
 	extern void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback);
 	extern void WiringGpioSetLoggingLevel(wiringGpioLogLevel level);
 
 	//  Log functions
-	void Log(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);
-	void LogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...);
+	void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);
+	void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...);
 
 #pragma endregion	// Logging
 	

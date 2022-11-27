@@ -28,26 +28,14 @@ map<int, int> SoftPwmThreads;
 void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback function)
 {
 	//  set our callback function
-	LogFunction = function;
-	
-	// pass along to the wiring* library
-#ifdef JETSON
-	wiringJetSetLoggingCallback(function);
-#else
-	wiringPiSetLoggingCallback(function);
-#endif
+	LoggingFunction = function;
+	wiringPiSetLoggingCallback(function);
 }
 
 void wiringGpioSetLoggingLevel(wiringGpioLogLevel level)
 {
-	LoggingLevel = level;
-	
-	// pass along to the wiring* library
-#ifdef JETSON
-	wiringJetSetLoggingLevel(level);
-#else
+	LogLevel = level;
 	wiringPiSetLoggingLevel(level);
-#endif
 }
 
 
@@ -59,7 +47,7 @@ int WiringGpioSetup()
 {
 #ifdef JETSON
 	return -1;
-#else	SetupMode = SetupModeDefault;
+#else
 	return wiringPiSetup();#endif
 }
 	
@@ -68,7 +56,7 @@ int WiringGpioSetupGpio()
 {
 #ifdef JETSON
 	return -1;
-#else	SetupMode = SetupModeGpio;
+#else
 	return wiringPiSetupGpio();#endif
 }
 	
@@ -77,7 +65,7 @@ int WiringGpioSetupSys()
 {
 #ifdef JETSON
 	return -1;
-#else	SetupMode = SetupModeSys;
+#else
 	return wiringPiSetupSys();#endif
 }
 
@@ -85,12 +73,12 @@ int WiringGpioSetupSys()
 int WiringGpioSetupPhys()
 {
 	//  TODO remove logging test
-	Log(LogLevelTrace,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelTrace");
-	Log(LogLevelDebug,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelDebug");
-	Log(LogLevelInfo,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelInfo");
-	Log(LogLevelWarn,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelWarn");
-	Log(LogLevelError,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelError");
-	Log(LogLevelFatal,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelFatal");
+	AddLog(LogLevelTrace,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelTrace");
+	AddLog(LogLevelDebug,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelDebug");
+	AddLog(LogLevelInfo,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelInfo");
+	AddLog(LogLevelWarn,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelWarn");
+	AddLog(LogLevelError,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelError");
+	AddLog(LogLevelFatal,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelFatal");
 
 	return wiringPiSetupPhys();
 }
