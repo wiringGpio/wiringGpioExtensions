@@ -65,51 +65,5 @@ void WriteLogToConsole(wiringGpioLogEvent log)
 }
 
 
-//  Log function for the test app
-//
-void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data)
-{
-	if (level >= LogLevel)
-	{
-		wiringGpioLogEvent logItem;
-		logItem.LogUnixTimeMilliseconds = GetUnixTimeMilliseconds();
-		logItem.Level = level;
-		logItem.Thread = 0;
-		logItem.Sender = sender;
-		logItem.Function = function;
-		logItem.Data = data;
-		
-		WriteLogToConsole(logItem);
-	}
-}
-
-
-//  Log function for the test app with string format
-//
-void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...)
-{
-	if (level >= LogLevel)
-	{
-		char* data;
-		va_list args;
-
-		va_start(args, format);
-		if (0 > vasprintf(&data, format, args)) data = 0x00;            //this is for logging, so failed allocation is not fatal
-		va_end(args);
-
-		if (data) {
-			AddLog(level, sender, function, data);
-			free(data);
-		}
-		else {
-			AddLog(LogLevelWarn, sender, function, "Error while logging a message: Memory allocation failed.");
-		}
-	}
-}
-
-
-//  Log level
-wiringGpioLogLevel LogLevel = LogLevelAll;
-
 
 

@@ -14,46 +14,11 @@ extern "C" {
 #endif
 	
 	
-//  Defines
-//	These defines map out the equivelent values in wiringPi / wiringJet
-//
-#pragma region Defines
-	
-//  Pin Modes
-#define	PINMODE_INPUT				(0)
-#define	PINMODE_OUTPUT				(1)
-#define	PINMODE_PWM_OUTPUT			(2)
-#define	PINMODE_GPIO_CLOCK			(3)
-#define	PINMODE_SOFT_PWM_OUTPUT		(4)
-#define	PINMODE_SOFT_TONE_OUTPUT	(5)
-#define	PINMODE_PWM_TONE_OUTPUT		(6)
-	
-//  Pin Values
-#define	PINVALUE_LOW	(0)
-#define	PINVALUE_HIGH	(1)
-	
-//  Pull Up / Down resistor values
-#define	PULLUPDN_OFF	(0)
-#define	PULLUPDN_DOWN	(1)
-#define	PULLUPDN_UP		(2)
-
-//  Interrupt triggers
-//
 #ifdef JETSON
-//  wiringJet definition follows GPIO defines
-#define	INTERRUPT_EDGE_SETUP		(0)
-#define	INTERRUPT_EDGE_FALLING		(2)
-#define	INTERRUPT_EDGE_RISING		(1)
-#define	INTERRUPT_EDGE_BOTH			(3)
+#include <wiringJet.h>
 #else
-//  wiringPi definition swaps falling and rising
-#define	INTERRUPT_EDGE_SETUP		(0)
-#define	INTERRUPT_EDGE_FALLING		(1)
-#define	INTERRUPT_EDGE_RISING		(2)
-#define	INTERRUPT_EDGE_BOTH			(3)
+#include <wiringPi.h>
 #endif
-
-#pragma endregion	//Defines
 	
 	
 //  Setup
@@ -71,72 +36,76 @@ extern "C" {
 	extern int WiringGpioSetupPhys();
 	
 	//  Tear Down
-	//  stops extension objects, waiting for all threads to stop
-	//  stops any softPwm threads still running
+	//  stops extension objects, stops software pwm,
+	//  waits for all threads to exit
 	extern void WiringGpioTerminate();
 	
-	//  Extension Node Management
-	extern int GetPinBaseForNode(int pin);
-	
 #pragma endregion
+
 	
-	
-//  Pin Control
+//  GPIO
 //
 #pragma region GPIO
 	
-	//  Node management
-	extern int WiringGpioGetPinBaseForNode(int pin);
-	
-	extern int WiringGpioGetFileDescriptorForNode(int pin);
-	
-	
-	//  Basic GPIO
-	extern void PinMode(int pin, int mode);
-
+	// Basic GPIO
 	extern void PinModeAlt(int pin, int mode);
+	
+	extern void PinMode(int pin, int mode);
+	
+	extern void PullUpDnControl(int pin, int pud);
+
+	extern int  DigitalRead(int pin);
 
 	extern void DigitalWrite(int pin, int value);
 
-	extern void DigitalWriteByte(int value);
-
-	extern int  DigitalRead(int pin);
+	extern int  AnalogRead(int pin);
 	
 	extern void AnalogWrite(int pin, int value);
 	
-	extern int  AnalogRead(int pin);
-
-	extern void PullUpDnControl(int pin, int pud);
-
 	//  PWM
+	extern void PwmWrite(int pin, int value);	
+	
+	extern void PwmWriteUnit(int pin, float value);
+
+	//  Hardware PWM
+	extern void GpioClockSet(int pin, int freq); 
+	
 	extern void PwmSetMode(int mode);
 	
-	extern void PwmWrite(int pin, int value);	
-
+	extern void PwmSetClock(int divisor);
+	
+	extern void PwmSetFrequency(int pin, float frequency);
+	
+	extern void PwmSetRange(unsigned int range);	//  TODO
+	
 	extern int PwmGetRange(int pin);
+		
+#pragma endregion
 
 	
-	//  Software PWM
+//  Software PWM
+//
+#pragma region SoftwarePwm
+	
 	extern int  SoftPwmCreate(int pin, int value, int range);
 
 	extern void SoftPwmWrite(int pin, int value);
 
 	extern void SoftPwmStop(int pin);
 	
-#pragma endregion
-	
-	
+#pragma endregion // SoftwarePwm
 
+	
 //  Interrupts
 //
 #pragma region Interrupts
+	
+	extern int WaitForInterrupt(int pin, int mS);
 	
 	extern int WiringGpioISR(int pin, int mode, void(*function)());
 	
 #pragma endregion
 	
-	
-
 	
 //  SPI
 //
@@ -155,9 +124,9 @@ extern "C" {
 	
 	extern int WiringGpioI2CSetup(int bus, int devId);
 
-	extern int WiringGpioI2CRead(int fd);
-
 	extern int WiringGpioI2CWrite(int fd, int data);
+	
+	extern int WiringGpioI2CRead(int fd);
 
 	extern int WiringGpioI2CWriteReg8(int fd, int reg, int data);
 
@@ -170,45 +139,27 @@ extern "C" {
 #pragma endregion
 	
 	
-//  mcp23***.h
+//  Wiring Device Extensions
 //
-#pragma region MCP23xxx
+#pragma region DeviceI2CExtensions
 	
+	//  MCP 230XX Pin Expanders
 	extern int Mcp23017Setup(int bus, int pinBase, int address);
-
 	extern int Mcp23008Setup(int bus, int pinBase, int address);
-
-#pragma endregion
 	
-	
-//  mcp3004.h
-//
-#pragma region MCP300x
-	
-	extern int Mcp3004Setup(int pinBase, int spiChannel);
-	
-	extern int Mcp3008Setup(int pinBase, int spiChannel);
-
-#pragma endregion
-
-	
-//  PCA9865 Driver
-//
-#pragma region PCS9685
-	
+	//  PCA9685 PWM controller
 	extern int Pca9685Setup(int bus, int pinBase, int i2cAddress, float freq);
-
-	extern int Pca9685GetFrequencyForPin(int pin);
-
-	extern int Pca9685GetFileDescriptorForPcaPin(int pin);
-
-	//  Internal PCA control functions
-	extern void Pca9685PWMFreq(int fd, float freq);
 	extern void Pca9685PWMReset(int fd);
-	extern void Pca9685PWMWrite(int fd, int pin, int on, int off);
-	extern void Pca9685PWMRead(int fd, int pin, int *on, int *off);
 	extern void Pca9685FullOn(int fd, int pin, int tf);
 	extern void Pca9685FullOff(int fd, int pin, int tf);
+
+#pragma endregion
+	
+#pragma region DeviceSPIExtensions
+	
+	//  MCP 300X ADCs
+	extern int Mcp3004Setup(int pinBase, int spiChannel);
+	extern int Mcp3008Setup(int pinBase, int spiChannel);
 	
 #pragma endregion
 
@@ -270,7 +221,7 @@ extern "C" {
 	extern void StepperResetTachoCount(int index);
 	
 	//  Shut down and clean up all resources for stepper motors
-	extern void ShutDownStepperMotors();
+	extern void StepperShutDown();
 
 #pragma endregion
 
@@ -305,7 +256,7 @@ extern "C" {
 	extern void SevenSegDisplaySet(int index, const char* display);
 	
 	//  Shut down and clean up all resources in use for seven segment displays
-	extern void ShutDownSevenSegDisplays();
+	extern void SevenSegDisplayShutDown();
 
 #pragma endregion
 	
@@ -342,7 +293,7 @@ extern "C" {
 	extern void RotaryEncoderResetCount(int index, int setCount);
 	
 	//  Shut down and clean up all resources used for rotary encoders
-	extern void ShutDownEncoders();
+	extern void RotaryEncoderShutDown();
 
 #pragma endregion
 
@@ -358,15 +309,15 @@ extern "C" {
 	//  input:  function pointer to callback if you want to receive message when tick changes
 	//  output: index number of the motor with rotary encoder created, or -1 for error
 	extern int MotorWithRotaryEncoderCreate(int bridgeIn1, int bridgeIn2, int bridgePwm, int encoderA, int encoderB, int encoderIndex, int countsPerRevolution, EncoderUpdatedCallback callback);
-
-	//  Set the min / max useful power of this motor
-	//  TODO
-	extern void MotorWithRotaryEncoderSetUsefulPowerRange(int index, double minPower, double maxPower);
-	
+		
 	//  Remove the motor with rotary encoder
 	//  Note: Rotary Encoder object uses wiringPiISR (interrupt).  There is no way to unregister an interrupt.
 	extern void MotorWithRotaryEncoderRemove(int index);
 
+	//  Set the min / max useful power of this motor
+	extern void MotorWithRotaryEncoderSetUsefulPowerRange(int index, double minPower, double maxPower);
+
+	
 	//  Reset the count of the rotary encoder
 	//  input: index of the motor with rotary encoder
 	//  input: count to set (default is 0)
@@ -425,30 +376,28 @@ extern "C" {
 	extern void MotorWithRotaryEncoderHoldAt(int index, double circle, double power);
 	
 	//  shut down and clean up all resources used for motors with rotary encoders
-	extern void ShutDownMotorsWithRotaryEncoder();
+	extern void MotorWithRotaryEncoderShutDown();
 	
 #pragma endregion
 	
+		
+//  Extension Node Management
+//
+#pragma region ExtensionNodeManagement
+	
+	extern int WiringGpioGetPinBaseForNode(int pin);
+	
+	extern int WiringGpioGetFileDescriptorForNode(int pin);
+	
+#pragma endregion
 	
 	
 //  Logging
 //
 #pragma region Logging
 
-#include <wiringGpioLogging.h>
-
-	// Logging Callback
-	extern wiringGpioLoggingCallback LoggingFunction;
-
-	//  Log Level
-	extern wiringGpioLogLevel LogLevel;
-
 	extern void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback);
 	extern void WiringGpioSetLoggingLevel(wiringGpioLogLevel level);
-
-	//  Log functions
-	void AddLog(wiringGpioLogLevel level, const char* sender, const char* function, const char* data);
-	void AddLogFormatted(wiringGpioLogLevel level, const char* sender, const char* function, const char* format, ...);
 
 #pragma endregion	// Logging
 	

@@ -3,7 +3,11 @@
 #include "SevenSegDisplaySample.h"
 #include "../Logging.h"
 
-
+#ifdef JETSON
+int i2cBus = 0;
+#else
+int i2cBus = 1;
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +17,7 @@ int main(int argc, char *argv[])
 	int retVal = WiringGpioSetupPhys();
 
 	// mcp chip
-	Mcp23017Setup(0,700, 0x22);
+	Mcp23017Setup(i2cBus,700, 0x22);
 
 	return SevenSegDisplaySampleMain(argc, argv);
 	

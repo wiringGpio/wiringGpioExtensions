@@ -79,7 +79,7 @@ void MotorWithRotaryEncoderRemove(const int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderRemove", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderRemove", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -93,7 +93,7 @@ void MotorWithRotaryEncoderSetUsefulPowerRange(int index, double minPower, doubl
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderSetUsefulPowerRange", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderSetUsefulPowerRange", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -107,7 +107,7 @@ void MotorWithRotaryEncoderResetCount(const int index, int setCount)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderResetCount", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderResetCount", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -122,7 +122,7 @@ int MotorWithRotaryEncoderGetCount(const int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetCount", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetCount", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -139,7 +139,7 @@ int MotorWithRotaryEncoderGetTick(const int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetTick", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetTick", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -156,7 +156,7 @@ double MotorWithRotaryEncoderGetCircle(const int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetCircle", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetCircle", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -173,7 +173,7 @@ double  MotorWithRotaryEncoderGetRpm(int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetRpm", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetRpm", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -190,7 +190,7 @@ double  MotorWithRotaryEncoderGetTickFrequency(int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetTickFrequency", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetTickFrequency", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -207,7 +207,7 @@ double  MotorWithRotaryEncoderGetFrequency(int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetFrequency", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderGetFrequency", "Error: Unable to find motor %d.", index);
 	}
 	
 	return 0;
@@ -223,7 +223,7 @@ void MotorWithRotaryEncoderRun(const int index, double power)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderRun", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderRun", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -237,7 +237,7 @@ void MotorWithRotaryEncoderStop(const int index)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderStop", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderStop", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -251,7 +251,7 @@ void MotorWithRotaryEncoderBrake(const int index, double power)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderBrake", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderBrake", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -265,7 +265,7 @@ void MotorWithRotaryEncoderTurnBy(const int index, double rotations, double powe
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderTurnBy", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderTurnBy", "Error: Unable to find motor %d.", index);
 	}
 }
 
@@ -279,7 +279,7 @@ void MotorWithRotaryEncoderHoldAt(const int index, double circle, double power)
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderHoldAt", "Error: Unable to find motor %d.", index);
+		LogFormatted(LogLevelError, "wiringGpioExtension_RotaryEncoder.cpp", "MotorWithRotaryEncoderHoldAt", "Error: Unable to find motor %d.", index);
 	}
 }
 

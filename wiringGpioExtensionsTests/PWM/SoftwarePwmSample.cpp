@@ -142,7 +142,7 @@ int SoftwarePwmSampleMain(int argc, char *argv[])
 				return 0;
 			}
 			SoftPwmStop(previousPin);
-			PinMode(pinNumber, PINMODE_OUTPUT);
+			PinMode(pinNumber, OUTPUT);
 			SoftPwmCreate(pinNumber, 0, range);
 		}
 		

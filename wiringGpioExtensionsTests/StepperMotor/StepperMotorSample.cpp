@@ -93,11 +93,11 @@ int StepperMotorSampleMain(int argc, char *argv[])
 	if (index >= 0)
 	{
 		motors.push_back(index);
-		AddLogFormatted(LogLevelInfo, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Created motor %d. %s", index, pinsElement.c_str());
+		LogFormatted(LogLevelInfo, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Created motor %d. %s", index, pinsElement.c_str());
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Failed to create stepper motor %s", pinsElement.c_str());
+		LogFormatted(LogLevelError, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Failed to create stepper motor %s", pinsElement.c_str());
 	}
 	
 	//  create a bipolar motor on dual HBridge
@@ -115,11 +115,11 @@ int StepperMotorSampleMain(int argc, char *argv[])
 	if (index >= 0)
 	{
 		motors.push_back(index);
-		AddLogFormatted(LogLevelInfo, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Created motor %d. %s", index, pinsElement.c_str());
+		LogFormatted(LogLevelInfo, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Created motor %d. %s", index, pinsElement.c_str());
 	}
 	else
 	{
-		AddLogFormatted(LogLevelError, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Failed to create stepper motor %s", pinsElement.c_str());
+		LogFormatted(LogLevelError, "StepperMotorSample.cpp", "StepperMotorSampleMain", "Failed to create stepper motor %s", pinsElement.c_str());
 	}
 	
 		

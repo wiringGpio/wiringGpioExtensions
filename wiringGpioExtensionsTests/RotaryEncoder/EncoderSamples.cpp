@@ -90,12 +90,12 @@ struct encoder *setupEncoderOriginal(int pin_a, int pin_b)
 	newencoder->pin_b = pin_b;
 	newencoder->Init();
 
-	PinMode(pin_a, PINMODE_INPUT);
-	PinMode(pin_b, PINMODE_INPUT);
-	PullUpDnControl(pin_a, PULLUPDN_UP);
-	PullUpDnControl(pin_b, PULLUPDN_UP);
-	WiringGpioISR(pin_a, INTERRUPT_EDGE_BOTH, updateEncodersOriginal);
-	WiringGpioISR(pin_b, INTERRUPT_EDGE_BOTH, updateEncodersOriginal);
+	PinMode(pin_a, INPUT);
+	PinMode(pin_b, INPUT);
+	PullUpDnControl(pin_a, PUD_UP);
+	PullUpDnControl(pin_b, PUD_UP);
+	WiringGpioISR(pin_a, INT_EDGE_BOTH, updateEncodersOriginal);
+	WiringGpioISR(pin_b, INT_EDGE_BOTH, updateEncodersOriginal);
 
 	return newencoder;
 };
@@ -146,9 +146,9 @@ struct encoder *setupEncoderTestOneSignal(int pin_a)
 	newencoder->pin_b = -1;
 	newencoder->Init();
 
-	PinMode(pin_a, PINMODE_INPUT);
-	PullUpDnControl(pin_a, PULLUPDN_UP);
-	WiringGpioISR(pin_a, INTERRUPT_EDGE_BOTH, updateEncodersTestOneSignal);
+	PinMode(pin_a, INPUT);
+	PullUpDnControl(pin_a, PUD_UP);
+	WiringGpioISR(pin_a, INT_EDGE_BOTH, updateEncodersTestOneSignal);
 
 	return newencoder;
 };
@@ -203,11 +203,11 @@ struct encoder* setupEncoderOptimalCpu(int pin_a, int pin_b)
 	newencoder->pin_b = pin_b;
 	newencoder->Init();
 
-	PinMode(pin_a, PINMODE_INPUT);
-	PullUpDnControl(pin_a, PULLUPDN_UP);
-	PinMode(pin_b, PINMODE_INPUT);
-	PullUpDnControl(pin_b, PULLUPDN_UP);
-	WiringGpioISR(pin_a, INTERRUPT_EDGE_BOTH, updateEncodersForPerformance);
+	PinMode(pin_a, INPUT);
+	PullUpDnControl(pin_a, PUD_UP);
+	PinMode(pin_b, INPUT);
+	PullUpDnControl(pin_b, PUD_UP);
+	WiringGpioISR(pin_a, INT_EDGE_BOTH, updateEncodersForPerformance);
 
 	return newencoder;
 };

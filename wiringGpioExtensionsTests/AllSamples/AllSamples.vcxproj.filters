@@ -47,13 +47,13 @@
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Logging.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\PwmHelpers.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\Keyboard.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Logging.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -88,13 +88,13 @@
     <ClCompile Include="..\StepperMotor\StepperMotorSample.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Logging.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\PwmHelpers.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\Keyboard.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Logging.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>

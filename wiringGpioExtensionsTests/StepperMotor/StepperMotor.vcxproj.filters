@@ -50,10 +50,10 @@
     <ClInclude Include="StepperMotorSample.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Logging.h">
+    <ClInclude Include="..\Keyboard.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Keyboard.h">
+    <ClInclude Include="..\Logging.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -61,10 +61,10 @@
     <ClCompile Include="StepperMotorSample.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Logging.cpp">
+    <ClCompile Include="..\Keyboard.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Keyboard.cpp">
+    <ClCompile Include="..\Logging.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>

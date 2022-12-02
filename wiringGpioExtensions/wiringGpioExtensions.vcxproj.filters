@@ -112,8 +112,5 @@
     <ClCompile Include="wiringGpioExtension_Mcp.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Logging.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

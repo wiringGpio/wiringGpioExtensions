@@ -54,7 +54,7 @@ int PinOnOffSampleMain(int argc, char* argv[])
 			return 0;
 		}
 		
-		PinMode(pin, PINMODE_OUTPUT);
+		PinMode(pin, OUTPUT);
 		
 		//  Read the state
 		int read = DigitalRead(pin);

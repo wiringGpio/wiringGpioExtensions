@@ -174,12 +174,12 @@ bool StepDriver::LoadFromXml(const char* sequenceXml, const char* pinsXml)
 	{
 		if (UsePwm)
 		{
-			PinMode(Pins[i], PINMODE_PWM_OUTPUT);
+			PinMode(Pins[i], PWM_OUTPUT);
 			PwmWrite(abs(Pins[i]), 0);
 		}
 		else
 		{
-			PinMode(Pins[i], PINMODE_OUTPUT);
+			PinMode(Pins[i], OUTPUT);
 			DigitalWrite(abs(Pins[i]), 0);
 		}
 	}

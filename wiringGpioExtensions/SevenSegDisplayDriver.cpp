@@ -114,13 +114,13 @@ bool SevenSegDisplayDriver::LoadFromXml(const char* xml)
 	//  init the segment pins
 	for (int i = 0; i < 7; i++)
 	{
-		PinMode(SegmentPins[i], PINMODE_OUTPUT);
+		PinMode(SegmentPins[i], OUTPUT);
 		DigitalWrite(SegmentPins[i], 0);
 	}
 	//  init the digit pins
 	for (int i = 0; i < DigitPins.size(); i++)
 	{
-		PinMode(abs(DigitPins[i]), PINMODE_OUTPUT);
+		PinMode(abs(DigitPins[i]), OUTPUT);
 		DigitalWrite(abs(DigitPins[i]), 0);
 	}
 	
@@ -138,7 +138,7 @@ void SevenSegDisplayDriver::SetSegmentPins(int segPins[8])
 	
 	for (int i = 0; i < 7; i++)
 	{
-		PinMode(SegmentPins[i], PINMODE_OUTPUT);
+		PinMode(SegmentPins[i], OUTPUT);
 		DigitalWrite(SegmentPins[i], 0);
 	}
 }
@@ -154,7 +154,7 @@ void SevenSegDisplayDriver::SetDigitPins(int numDigits, int digitPins[])
 	
 	for (int i = 0; i < DigitPins.size(); i++)
 	{
-		PinMode(abs(DigitPins[i]), PINMODE_OUTPUT);
+		PinMode(abs(DigitPins[i]), OUTPUT);
 		DigitalWrite(abs(DigitPins[i]), 0);
 	}
 }

@@ -72,7 +72,7 @@ int HardwarePwmSampleMain(int argc, char *argv[])
 	else 
 		range = 4096;
 	
-	PinMode(pinNumber, PINMODE_PWM_OUTPUT);
+	PinMode(pinNumber, PWM_OUTPUT);
 	
 	cout << " PWM: pin " << pinNumber << " range " << range << " power level " << powerLevel << endl;
 
@@ -128,7 +128,7 @@ int HardwarePwmSampleMain(int argc, char *argv[])
 				return 0;
 			}
 			
-			PinMode(pinNumber, PINMODE_PWM_OUTPUT);
+			PinMode(pinNumber, PWM_OUTPUT);
 		}
 		else 
 		{

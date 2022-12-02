@@ -11,6 +11,11 @@
 
 using namespace std;
 
+#ifdef JETSON
+int i2cBus = 0;
+#else
+int i2cBus = 1;
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -21,11 +26,11 @@ int main(int argc, char *argv[])
 		return retVal;
 	
 	//  Initialize MCP chip
-	Mcp23008Setup(0, 400, 0x27);
+	Mcp23008Setup(i2cBus, 400, 0x27);
 	
 	//  Adafruit PWM Hat default address
-	int fd = Pca9685Setup(0, 500, 0x40, 50.0);
-	if (fd != 0)
+	int fd = Pca9685Setup(i2cBus, 500, 0x40, 50.0);
+	if (fd >= 0)
 	{
 		// Reset all output 
 		Pca9685PWMReset(fd); 

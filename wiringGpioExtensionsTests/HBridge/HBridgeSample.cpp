@@ -39,9 +39,9 @@ int HBridgeSampleMain(int argc, char *argv[])
 	int range = 1024;
 	int powerLevel = 0;
 
-	PinMode(pwmPin, PINMODE_PWM_OUTPUT);
-	PinMode(in1Pin, PINMODE_OUTPUT);
-	PinMode(in2Pin, PINMODE_OUTPUT);
+	PinMode(pwmPin, PWM_OUTPUT);
+	PinMode(in1Pin, OUTPUT);
+	PinMode(in2Pin, OUTPUT);
 	
 	//  set the initial direction
 	RunForward();

@@ -64,7 +64,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := Logging.cpp MotorWithRotaryEncoder.cpp RotaryEncoder.cpp SevenSegDisplayDriver.cpp StepDriver.cpp Thread.cpp tinyxml2.cpp wiringGpioExtensions.cpp wiringGpioExtension_Mcp.cpp wiringGpioExtension_MotorWithRotaryEncoder.cpp wiringGpioExtension_Pca9685.cpp wiringGpioExtension_RotaryEncoder.cpp wiringGpioExtension_SevenSegDisplay.cpp wiringGpioExtension_StepperMotor.cpp
+SOURCEFILES := MotorWithRotaryEncoder.cpp RotaryEncoder.cpp SevenSegDisplayDriver.cpp StepDriver.cpp Thread.cpp tinyxml2.cpp wiringGpioExtensions.cpp wiringGpioExtension_Mcp.cpp wiringGpioExtension_MotorWithRotaryEncoder.cpp wiringGpioExtension_Pca9685.cpp wiringGpioExtension_RotaryEncoder.cpp wiringGpioExtension_SevenSegDisplay.cpp wiringGpioExtension_StepperMotor.cpp
 EXTERNAL_LIBS := 
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 

@@ -37,7 +37,7 @@ RotaryEncoder::RotaryEncoder(int pinA, int pinB, int pinIndex, int countsPerRevo
 	
 	TicksPerRevolution = countsPerRevolution*4;
 	
-	AddLogFormatted(LogLevelInfo, "RotaryEncoder", "RotaryEncoder", "Setup rotary encoder %d. Pin A %d. Pin B %d. Pin index %d", pinA, pinB, pinIndex);
+	LogFormatted(LogLevelInfo, "RotaryEncoder", "RotaryEncoder", "Setup rotary encoder %d. Pin A %d. Pin B %d. Pin index %d", pinA, pinB, pinIndex);
 }
 
 
@@ -77,18 +77,18 @@ void RotaryEncoder::SetupEncoderPins(int pinA, int pinB, int pinIndexCounter)
 	PinB = pinB;
 	PinIndexCounter = pinIndexCounter;
 	
-	PinMode(PinA, PINMODE_INPUT);
-	PinMode(PinB, PINMODE_INPUT);
-	PullUpDnControl(PinA, PULLUPDN_UP);
-	PullUpDnControl(PinB, PULLUPDN_UP);
+	PinMode(PinA, INPUT);
+	PinMode(PinB, INPUT);
+	PullUpDnControl(PinA, PUD_UP);
+	PullUpDnControl(PinB, PUD_UP);
 	
 	if (PinIndexCounter > 0)
 	{
-		PinMode(PinIndexCounter, PINMODE_INPUT);
-		PullUpDnControl(PinIndexCounter, PULLUPDN_UP);
+		PinMode(PinIndexCounter, INPUT);
+		PullUpDnControl(PinIndexCounter, PUD_UP);
 	}
 	
-	AddLogFormatted(LogLevelInfo, "RotaryEncoder", "SetupEncoderPins", "Pin A: %d  Pin B: %d  Pin Index: %d", PinA, PinB, PinIndexCounter);
+	LogFormatted(LogLevelInfo, "RotaryEncoder", "SetupEncoderPins", "Pin A: %d  Pin B: %d  Pin Index: %d", PinA, PinB, PinIndexCounter);
 }
 
 
@@ -162,7 +162,7 @@ void RotaryEncoder::CalculateTickFrequency()
 		TickFrequencySampleLastTime = now;
 		TickFrequencySampleLastTickCount = TickCount;
 		
-		//AddLog("RotaryEncoder", "CalculateTickFrequency", format("Encoder TickFrequency: %.1lf CountFrequency: %.1lf  RPM %.2lf.", TickFrequency, GetCountFrequency(), GetRpm()), LogLevelTrace);
+		//Log("RotaryEncoder", "CalculateTickFrequency", format("Encoder TickFrequency: %.1lf CountFrequency: %.1lf  RPM %.2lf.", TickFrequency, GetCountFrequency(), GetRpm()), LogLevelTrace);
 	}
 	
 }
@@ -301,59 +301,59 @@ void SetupEncoderWiringPiCallbacks(int index, RotaryEncoder* encoder)
 	switch (index)
 	{
 	case 0:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderZeroCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderZeroCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderZeroCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderZeroCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderZeroIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderZeroIndexCallback);
 		break;
 		
 	case 1:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderOneCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderOneCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderOneCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderOneCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderOneIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderOneIndexCallback);
 		break;
 		
 	case 2:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderTwoCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderTwoCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderTwoCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderTwoCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderTwoIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderTwoIndexCallback);
 		break;
 		
 	case 3:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderThreeCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderThreeCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderThreeCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderThreeCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderThreeIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderThreeIndexCallback);
 		break;
 		
 	case 4:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderFourCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderFourCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderFourCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderFourCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderFourIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderFourIndexCallback);
 		break;
 		
 	case 5:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderFiveCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderFiveCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderFiveCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderFiveCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderFiveIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderFiveIndexCallback);
 		break;
 		
 	case 6:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderSixCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderSixCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderSixCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderSixCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderSixIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderSixIndexCallback);
 		break;
 		
 	case 7:
-		WiringGpioISR(encoder->GetPinA(), INTERRUPT_EDGE_BOTH, EncoderSevenCallback);
-		WiringGpioISR(encoder->GetPinB(), INTERRUPT_EDGE_BOTH, EncoderSevenCallback);
+		WiringGpioISR(encoder->GetPinA(), INT_EDGE_BOTH, EncoderSevenCallback);
+		WiringGpioISR(encoder->GetPinB(), INT_EDGE_BOTH, EncoderSevenCallback);
 		if (encoder->GetPinIndexCounter() > 0)
-			WiringGpioISR(encoder->GetPinIndexCounter(), INTERRUPT_EDGE_BOTH, EncoderSevenIndexCallback);
+			WiringGpioISR(encoder->GetPinIndexCounter(), INT_EDGE_BOTH, EncoderSevenIndexCallback);
 		break;
 	
 	default:

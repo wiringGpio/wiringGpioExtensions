@@ -15,6 +15,12 @@ using namespace std;
 
 map<int, int> PcaMap;
 
+#ifdef JETSON
+int i2cBus = 0;
+#else
+int i2cBus = 1;
+#endif
+
 int main(int argc, char *argv[])
 {
 	WiringGpioSetLoggingCallback(WriteLogToConsole);
@@ -24,8 +30,8 @@ int main(int argc, char *argv[])
 	
 	
 	//  Adafruit DC Motor Hat default address
-	int fd = Pca9685Setup(0, 600, 0x60, 50.0);
-	if (fd != 0) 
+	int fd = Pca9685Setup(i2cBus, 600, 0x60, 50.0);
+	if (fd >= 0) 
 	{
 		// Reset all output 
 		Pca9685PWMReset(fd); 
@@ -35,7 +41,7 @@ int main(int argc, char *argv[])
 	
 //	//  Adafruit PWM Hat default address
 //	fd = Pca9685Setup(500, 0x40, 50.0);
-//	if (fd != 0)
+//	if (fd >= 0)
 //	{
 //	// Reset all output 
 //		Pca9685PWMReset(fd); 

@@ -10,10 +10,14 @@
 #include <wiringJet.h>
 #include <wiringJetI2C.h>
 #include <wiringJetSPI.h>
-#else#include <wiringPi.h>
+#else
+#include <wiringPi.h>
 #include <softPwm.h>
 #include <wiringPiSPI.h>
-#include <wiringPiI2C.h>#endif//  wiringGpio Includes
+#include <wiringPiI2C.h>
+#endif
+
+//  wiringGpio Includes
 #include "wiringGpioExtensions.h"
 
 
@@ -24,86 +28,52 @@ using namespace std;
 map<int, int> SoftPwmThreads;
 
 
-
-void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback function)
-{
-	//  set our callback function
-	LoggingFunction = function;
-	wiringPiSetLoggingCallback(function);
-}
-
-void wiringGpioSetLoggingLevel(wiringGpioLogLevel level)
-{
-	LogLevel = level;
-	wiringPiSetLoggingLevel(level);
-}
-
-
 //  Setup
 //
 #pragma region Setup
 
 int WiringGpioSetup()
 {
-#ifdef JETSON
-	return -1;
-#else
-	return wiringPiSetup();#endif
+	return wiringPiSetup();
 }
 	
 
 int WiringGpioSetupGpio()
 {
-#ifdef JETSON
-	return -1;
-#else
-	return wiringPiSetupGpio();#endif
+	return wiringPiSetupGpio();
 }
 	
 
 int WiringGpioSetupSys()
 {
-#ifdef JETSON
-	return -1;
-#else
-	return wiringPiSetupSys();#endif
+	return wiringPiSetupSys();
 }
 
 
 int WiringGpioSetupPhys()
 {
-	/* Test logging callback for all log levels
-	AddLog(LogLevelTrace,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelTrace");
-	AddLog(LogLevelDebug,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelDebug");
-	AddLog(LogLevelInfo,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelInfo");
-	AddLog(LogLevelWarn,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelWarn");
-	AddLog(LogLevelError,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelError");
-	AddLog(LogLevelFatal,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelFatal");
-	*/
-
+	// Test logging callback for all log levels
+	Log(LogLevelTrace,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelTrace");
+//	Log(LogLevelDebug,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelDebug");
+//	Log(LogLevelInfo,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelInfo");
+//	Log(LogLevelWarn,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelWarn");
+//	Log(LogLevelError,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelError");
+//	Log(LogLevelFatal,"WiringGpioExtensions.cpp", "WiringGpioSetupPhys", "LogLevelFatal");
+	
 	return wiringPiSetupPhys();
 }
 
 
-
-
-
-
 void WiringGpioTerminate()
 {
-	
-#ifndef  JETSON
-	//  shut down wiringPi soft pwm threads
+	//  shut down soft pwm threads
 	map<int, int>::iterator itPwmThreads;
 	for (itPwmThreads = SoftPwmThreads.begin(); itPwmThreads != SoftPwmThreads.end(); ++itPwmThreads)
 	{
 		softPwmStop(itPwmThreads->second);
 	}  
-	
 	//  clean up the map
 	SoftPwmThreads.clear();
-	
-#endif // ! JETSON
 	
 	ShutDownStepperMotors();
 	
@@ -112,12 +82,8 @@ void WiringGpioTerminate()
 	ShutDownEncoders();
 	
 	ShutDownMotorsWithRotaryEncoder();
-}
-
-
-int GetPinBaseForNode(int pin)
-{
-	return wiringPiGetPinBaseForNode(pin);
+	
+	wiringPiTerminate();
 }
 
 #pragma endregion
@@ -128,14 +94,9 @@ int GetPinBaseForNode(int pin)
 //
 #pragma region GPIO
 
-int WiringGpioGetPinBaseForNode(int pin)
+void PinModeAlt(int pin, int mode)
 {
-	return wiringPiGetPinBaseForNode(pin);
-}
-	
-int WiringGpioGetFileDescriptorForNode(int pin)
-{
-	return wiringPiGetFileDescriptorForNode(pin);
+	pinModeAlt(pin, mode);
 }
 
 void PinMode(int pin, int mode)
@@ -143,51 +104,64 @@ void PinMode(int pin, int mode)
 	pinMode(pin, mode);
 }
 
-
-void PinModeAlt(int pin, int mode)
+void PullUpDnControl(int pin, int pud)
 {
-	pinModeAlt(pin, mode);
+	pullUpDnControl(pin, pud);
 }
-
-
-void DigitalWrite(int pin, int value)
-{
-	digitalWrite(pin, value);
-}
-	
 
 int  DigitalRead(int pin)
 {
 	return digitalRead(pin);
 }
 
+void DigitalWrite(int pin, int value)
+{
+	digitalWrite(pin, value);
+}
+
+int  AnalogRead(int pin)
+{
+	return analogRead(pin);
+}
 
 void AnalogWrite(int pin, int value)
 {
 	analogWrite(pin, value);
 }
 
-
-int  AnalogRead(int pin)
-{
-	return analogRead(pin);
-}
-	
-
-void PullUpDnControl(int pin, int pud)
-{
-	pullUpDnControl(pin, pud);
-}
-
-#pragma endregion
-
-//  PWM
-//
-#pragma region PWM
-
 void PwmWrite(int pin, int value)
 {
 	pwmWrite(pin, value);
+}
+
+extern void PwmWriteUnit(int pin, float value)
+{
+	pwmWriteUnit(pin, value);
+}
+
+void GpioClockSet(int pin, int freq)
+{
+	gpioClockSet(pin, freq);
+}
+	
+void PwmSetMode(int mode)
+{
+	pwmSetMode(mode);
+}	
+
+void PwmSetClock(int divisor)
+{
+	pwmSetClock(divisor);
+}
+
+extern void PwmSetFrequency(int pin, float frequency)
+{
+	pwmSetFrequency(pin, frequency);
+}
+	
+extern void PwmSetRange(unsigned int range)
+{
+	pwmSetRange(range);
 }
 
 int PwmGetRange(int pin)
@@ -195,6 +169,12 @@ int PwmGetRange(int pin)
 	return pwmGetRange(pin);
 }
 
+#pragma endregion
+
+
+//  Software PWM
+//
+#pragma region SoftPwm
 
 int  SoftPwmCreate(int pin, int value, int range)	
 {
@@ -215,12 +195,10 @@ int  SoftPwmCreate(int pin, int value, int range)
 	return ret;
 }
 
-
 void SoftPwmWrite(int pin, int value)	
 {
 	softPwmWrite(pin, value);
 }
-
 
 void SoftPwmStop(int pin)	
 {
@@ -235,20 +213,21 @@ void SoftPwmStop(int pin)
 #pragma endregion
 
 
-
-
 //  Interrupts
 //
 #pragma region Interrupts
 
-
+extern int WaitForInterrupt(int pin, int mS)
+{
+	return waitForInterrupt(pin, mS);
+}	
+	
 int WiringGpioISR(int pin, int mode, void(*function)())
 {
 	return wiringPiISR(pin, mode, function);
 }
 	
 #pragma endregion
-
 
 
 //  SPI
@@ -278,43 +257,68 @@ int WiringGpioI2CSetup(int bus, int devId)
 	return wiringPiI2CSetup(bus, devId);
 }
 
+int WiringGpioI2CWrite(int fd, int data)
+{
+	return wiringPiI2CWrite(fd, data);
+}
 
 int WiringGpioI2CRead(int fd)
 {
 	return wiringPiI2CRead(fd);
 }
 
-
-int WiringGpioI2CWrite(int fd, int data)
-{
-	return wiringPiI2CWrite(fd, data);
-}
-
-
 int WiringPiI2CWriteReg8(int fd, int reg, int data)
 {
 	return wiringPiI2CWriteReg8(fd, reg, data);
 }
-
 
 int WiringPiI2CWriteReg16(int fd, int reg, int data)
 {
 	return wiringPiI2CWriteReg16(fd, reg, data);
 }
 
-
 int WiringPiI2CReadReg8(int fd, int reg)
 {
 	return wiringPiI2CReadReg8(fd, reg);
 }
-
 
 int WiringPiI2CReadReg16(int fd, int reg)
 {
 	return wiringPiI2CReadReg16(fd, reg);
 }
 
-
 #pragma endregion 
 
 
+//  Extension Node Management
+//
+#pragma region ExtensionNodeManagement
+
+int WiringGpioGetPinBaseForNode(int pin)
+{
+	return wiringPiGetPinBaseForNode(pin);
+}
+	
+int WiringGpioGetFileDescriptorForNode(int pin)
+{
+	return wiringPiGetFileDescriptorForNode(pin);
+}
+
+#pragma endregion
+
+//  Logging
+//
+#pragma region Logging
+
+void WiringGpioSetLoggingCallback(wiringGpioLoggingCallback function)
+{
+	//  set our callback function
+	wiringPiSetLoggingCallback(function);
+}
+
+void wiringGpioSetLoggingLevel(wiringGpioLogLevel level)
+{
+	wiringPiSetLoggingLevel(level);
+}
+
+#pragma endregion
