@@ -9,7 +9,7 @@ using namespace std;
 map<int, RotaryEncoder*> RotaryEncoderMap;
 
 
-RotaryEncoder* FindRotaryEncoder(int index)
+RotaryEncoder* RotaryEncoderFind(int index)
 {
 	map<int, RotaryEncoder*>::iterator it = RotaryEncoderMap.find(index);
 	if (it != RotaryEncoderMap.end())
@@ -20,7 +20,7 @@ RotaryEncoder* FindRotaryEncoder(int index)
 }
 
 
-void ShutDownEncoders()
+void RotaryEncoderShutDown()
 {
 	//  delete the rotary encoders
 	map<int, RotaryEncoder*>::iterator itEncoders;
@@ -67,7 +67,7 @@ int RotaryEncoderCreate(const int pinA, const int pinB, const int pinIndex, cons
 
 void RotaryEncoderRemove(int index)
 {
-	RotaryEncoder* findEncoder = FindRotaryEncoder(index);
+	RotaryEncoder* findEncoder = RotaryEncoderFind(index);
 	if (findEncoder != NULL)
 	{
 		RotaryEncoderMap.erase(index);
@@ -78,7 +78,7 @@ void RotaryEncoderRemove(int index)
 
 int RotaryEncoderGetCount(int index)
 {
-	RotaryEncoder* findEncoder = FindRotaryEncoder(index);
+	RotaryEncoder* findEncoder = RotaryEncoderFind(index);
 	if (findEncoder != NULL)
 		return findEncoder->GetCount();
 	
@@ -88,7 +88,7 @@ int RotaryEncoderGetCount(int index)
 
 double RotaryEncoderGetRpm(int index)
 {
-	RotaryEncoder* findEncoder = FindRotaryEncoder(index);
+	RotaryEncoder* findEncoder = RotaryEncoderFind(index);
 	if (findEncoder != NULL)
 		return findEncoder->GetRpm();
 	
@@ -98,7 +98,7 @@ double RotaryEncoderGetRpm(int index)
 
 double RotaryEncoderGetFrequency(int index)
 {
-	RotaryEncoder* findEncoder = FindRotaryEncoder(index);
+	RotaryEncoder* findEncoder = RotaryEncoderFind(index);
 	if (findEncoder != NULL)
 		return findEncoder->GetCountFrequency();
 	
@@ -108,7 +108,7 @@ double RotaryEncoderGetFrequency(int index)
 
 void RotaryEncoderResetCount(int index, int setCount)
 {
-	RotaryEncoder* findEncoder = FindRotaryEncoder(index);
+	RotaryEncoder* findEncoder = RotaryEncoderFind(index);
 	if (findEncoder != NULL)
 		findEncoder->ResetCounter(setCount);
 	

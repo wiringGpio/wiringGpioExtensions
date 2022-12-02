@@ -10,7 +10,7 @@ using namespace std;
 map<int, SevenSegDisplayDriver*> SevenSegDisplayMap;
 
 
-SevenSegDisplayDriver* FindSevenSegDisplay(int index)
+SevenSegDisplayDriver* SevenSetDisplayFind(int index)
 {
 	map<int, SevenSegDisplayDriver*>::iterator it = SevenSegDisplayMap.find(index);
 	if (it != SevenSegDisplayMap.end())
@@ -21,7 +21,7 @@ SevenSegDisplayDriver* FindSevenSegDisplay(int index)
 }
 
 
-void ShutDownSevenSegDisplays()
+void SevenSegDisplayShutDown()
 {
 	//  shut down the seven segment display drivers
 	map<int, SevenSegDisplayDriver*>::iterator itSegDisplays;
@@ -96,7 +96,7 @@ int SevenSegDisplayCreate(int segPins[8], int numDigits, int digitPins[])
 
 void SevenSegDisplayRemove(int index)
 {
-	SevenSegDisplayDriver* findDriver = FindSevenSegDisplay(index);
+	SevenSegDisplayDriver* findDriver = SevenSetDisplayFind(index);
 	if (findDriver != NULL)
 	{
 		findDriver->Cancel();
@@ -108,7 +108,7 @@ void SevenSegDisplayRemove(int index)
 
 void SevenSegDisplayOff(int index)
 {
-	SevenSegDisplayDriver* findDriver = FindSevenSegDisplay(index);
+	SevenSegDisplayDriver* findDriver = SevenSetDisplayFind(index);
 	if (findDriver != NULL)
 		findDriver->TurnOff();
 }
@@ -116,7 +116,7 @@ void SevenSegDisplayOff(int index)
 
 void SevenSegDisplaySetDelay(int index, int delay)
 {
-	SevenSegDisplayDriver* findDriver = FindSevenSegDisplay(index);
+	SevenSegDisplayDriver* findDriver = SevenSetDisplayFind(index);
 	if (findDriver != NULL)
 		findDriver->SetDelay(delay);
 }
@@ -124,7 +124,7 @@ void SevenSegDisplaySetDelay(int index, int delay)
 
 void SevenSegDisplaySet(int index, const char* display)
 {
-	SevenSegDisplayDriver* findDriver = FindSevenSegDisplay(index);
+	SevenSegDisplayDriver* findDriver = SevenSetDisplayFind(index);
 	if (findDriver != NULL)
 		findDriver->SetDisplay(display);
 }

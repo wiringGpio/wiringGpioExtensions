@@ -75,13 +75,13 @@ void WiringGpioTerminate()
 	//  clean up the map
 	SoftPwmThreads.clear();
 	
-	ShutDownStepperMotors();
+	StepperShutDown();
 	
-	ShutDownSevenSegDisplays();
+	SevenSegDisplayShutDown();
 	
-	ShutDownEncoders();
+	RotaryEncoderShutDown();
 	
-	ShutDownMotorsWithRotaryEncoder();
+	MotorWithRotaryEncoderShutDown();
 	
 	wiringPiTerminate();
 }

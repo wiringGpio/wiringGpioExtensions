@@ -10,7 +10,7 @@ using namespace std;
 map<int, StepDriver*> StepperMotorMap;
 
 
-StepDriver* FindStepperMotor(int index)
+StepDriver* StepperMotorFind(int index)
 {
 	//  Find the step driver
 	map<int, StepDriver*>::iterator it = StepperMotorMap.find(index);
@@ -63,7 +63,7 @@ int StepperCreateFromXml(const char* sequenceElement, const char* pinsElement)
 
 void StepperRemove(int index)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 	{
 		findDriver->Cancel();
@@ -75,7 +75,7 @@ void StepperRemove(int index)
 
 void StepperSetDelay(int index, float delay)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->SetDelay(delay);
 }
@@ -83,7 +83,7 @@ void StepperSetDelay(int index, float delay)
 
 void StepperStep(int index, int numberSteps)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->AddStepCommand(numberSteps);
 }
@@ -91,7 +91,7 @@ void StepperStep(int index, int numberSteps)
 
 void StepperSpin(int index, int direction)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->AddSpinCommand(direction);
 }
@@ -99,7 +99,7 @@ void StepperSpin(int index, int direction)
 
 void StepperSetSpeed(int index, float percent)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->SetSpeed(percent);
 }
@@ -107,7 +107,7 @@ void StepperSetSpeed(int index, float percent)
 
 void StepperSetSequenceInterval(int index, int interval)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->SetSequenceInterval(interval);
 }
@@ -115,7 +115,7 @@ void StepperSetSequenceInterval(int index, int interval)
 
 void StepperStop(int index)
 {
-	StepDriver* findDriver = FindStepperMotor(index);
+	StepDriver* findDriver = StepperMotorFind(index);
 	if (findDriver != NULL)
 		findDriver->Stop();
 }
@@ -135,7 +135,7 @@ void StepperResetTachoCount(int index)
 }
 
 
-void ShutDownStepperMotors()
+void StepperShutDown()
 {
 	//  shut down our step driver threads
 	map<int, StepDriver*>::iterator itStepDrivers;

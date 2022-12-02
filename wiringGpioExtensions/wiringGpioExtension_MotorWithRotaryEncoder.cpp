@@ -9,14 +9,14 @@
 
 using namespace std;
 
-RotaryEncoder* FindRotaryEncoder(int index);
+RotaryEncoder* RotaryEncoderFind(int index);
 
 
 //  Map of motor with encoder index to motor with encoder object
 map<int, MotorWithRotaryEncoder*> MotorWithRotaryEncoderMap;
 
 
-MotorWithRotaryEncoder* FindMotorWithRotaryEncoder(int index)
+MotorWithRotaryEncoder* MotorWithRotaryEncoderFind(int index)
 {
 	map<int, MotorWithRotaryEncoder*>::iterator it = MotorWithRotaryEncoderMap.find(index);
 	if (it != MotorWithRotaryEncoderMap.end())
@@ -27,7 +27,7 @@ MotorWithRotaryEncoder* FindMotorWithRotaryEncoder(int index)
 }
 
 
-void ShutDownMotorsWithRotaryEncoder()
+void MotorWithRotaryEncoderShutDown()
 {
 	//  delete all motors with rotary encoder
 	map<int, MotorWithRotaryEncoder*>::iterator itMotorsWithEncoders;
@@ -62,7 +62,7 @@ int MotorWithRotaryEncoderCreate(const int bridgeIn1, const int bridgeIn2, const
 		index++;
 	}
 	
-	MotorWithRotaryEncoder* newMotorWithEncoder = new MotorWithRotaryEncoder(bridgeIn1, bridgeIn2, bridgePwm, PwmGetRange(bridgePwm), FindRotaryEncoder(newEncoder));
+	MotorWithRotaryEncoder* newMotorWithEncoder = new MotorWithRotaryEncoder(bridgeIn1, bridgeIn2, bridgePwm, PwmGetRange(bridgePwm), RotaryEncoderFind(newEncoder));
 	MotorWithRotaryEncoderMap[index] = newMotorWithEncoder;
 	return index;
 }
@@ -70,7 +70,7 @@ int MotorWithRotaryEncoderCreate(const int bridgeIn1, const int bridgeIn2, const
 
 void MotorWithRotaryEncoderRemove(const int index)
 {
-	MotorWithRotaryEncoder* findMotor = FindMotorWithRotaryEncoder(index);
+	MotorWithRotaryEncoder* findMotor = MotorWithRotaryEncoderFind(index);
 	if (findMotor != NULL)
 	{
 		findMotor->Stop();
@@ -86,7 +86,7 @@ void MotorWithRotaryEncoderRemove(const int index)
 
 void MotorWithRotaryEncoderSetUsefulPowerRange(int index, double minPower, double maxPower)
 {
-	MotorWithRotaryEncoder* findMotor = FindMotorWithRotaryEncoder(index);
+	MotorWithRotaryEncoder* findMotor = MotorWithRotaryEncoderFind(index);
 	if (findMotor != NULL)
 	{
 		findMotor->SetUsefulPowerRange(minPower, maxPower);
@@ -100,7 +100,7 @@ void MotorWithRotaryEncoderSetUsefulPowerRange(int index, double minPower, doubl
 
 void MotorWithRotaryEncoderResetCount(const int index, int setCount)
 {
-	MotorWithRotaryEncoder* findMotor = FindMotorWithRotaryEncoder(index);
+	MotorWithRotaryEncoder* findMotor = MotorWithRotaryEncoderFind(index);
 	if (findMotor != NULL)
 	{
 		findMotor->ResetCount(setCount);
@@ -115,7 +115,7 @@ void MotorWithRotaryEncoderResetCount(const int index, int setCount)
 	
 int MotorWithRotaryEncoderGetCount(const int index)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetCount();
@@ -132,7 +132,7 @@ int MotorWithRotaryEncoderGetCount(const int index)
 	
 int MotorWithRotaryEncoderGetTick(const int index)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetTick();
@@ -149,7 +149,7 @@ int MotorWithRotaryEncoderGetTick(const int index)
 
 double MotorWithRotaryEncoderGetCircle(const int index)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetCircle();
@@ -166,7 +166,7 @@ double MotorWithRotaryEncoderGetCircle(const int index)
 double  MotorWithRotaryEncoderGetRpm(int index)
 	
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetRpm();
@@ -183,7 +183,7 @@ double  MotorWithRotaryEncoderGetRpm(int index)
 double  MotorWithRotaryEncoderGetTickFrequency(int index)
 	
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetTickFrequency();
@@ -200,7 +200,7 @@ double  MotorWithRotaryEncoderGetTickFrequency(int index)
 double  MotorWithRotaryEncoderGetFrequency(int index)
 	
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		return motor->GetCountFrequency();
@@ -216,7 +216,7 @@ double  MotorWithRotaryEncoderGetFrequency(int index)
 
 void MotorWithRotaryEncoderRun(const int index, double power)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		motor->Run(power);
@@ -230,7 +230,7 @@ void MotorWithRotaryEncoderRun(const int index, double power)
 
 void MotorWithRotaryEncoderStop(const int index)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		motor->Stop();
@@ -244,7 +244,7 @@ void MotorWithRotaryEncoderStop(const int index)
 
 void MotorWithRotaryEncoderBrake(const int index, double power)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		motor->BrakeMotor(power);
@@ -258,7 +258,7 @@ void MotorWithRotaryEncoderBrake(const int index, double power)
 
 void MotorWithRotaryEncoderTurnBy(const int index, double rotations, double power)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		motor->TurnBy(rotations, power);
@@ -272,7 +272,7 @@ void MotorWithRotaryEncoderTurnBy(const int index, double rotations, double powe
 
 void MotorWithRotaryEncoderHoldAt(const int index, double circle, double power)
 {
-	MotorWithRotaryEncoder* motor = FindMotorWithRotaryEncoder(index); 
+	MotorWithRotaryEncoder* motor = MotorWithRotaryEncoderFind(index); 
 	if (motor != NULL)
 	{
 		motor->TurnTo(circle, power);
