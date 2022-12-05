@@ -84,8 +84,9 @@ bool StepDriver::LoadFromXml(const char* sequenceXml, const char* pinsXml)
 	<StepperDriver>
 		<Sequence>1</Sequence>
 		<Pins>100, -100, 101, -101</Pins>
-		<Polarity>100,104,105</Polarity>
-		<Polarity>101,106,107</Polarity>
+		<PwmScale>0.5</PwmScale>   
+		<HBridge>100,104,105</HBridge>
+		<HBridge>101,106,107</HBridge>
 	</StepperDriver>
 	*/
 	
@@ -145,7 +146,7 @@ bool StepDriver::LoadFromXml(const char* sequenceXml, const char* pinsXml)
 	}
 	
 	//  see if we have polarity elements
-	XMLElement* polarityElement = rootElement->FirstChildElement("Polarity");
+	XMLElement* polarityElement = rootElement->FirstChildElement("HBridge");
 	while (polarityElement != NULL)
 	{
 		vector<int> polarityPins;
@@ -154,7 +155,7 @@ bool StepDriver::LoadFromXml(const char* sequenceXml, const char* pinsXml)
 		if (polarityPins.size() != 3)
 			return false;
 		PinPolarity[polarityPins[0]] =  tuple<int, int>(polarityPins[1], polarityPins[2]);
-		polarityElement = polarityElement->NextSiblingElement("Polarity");
+		polarityElement = polarityElement->NextSiblingElement("HBridge");
 	}
 	
 	//  check to see if we have polarity pins we need
