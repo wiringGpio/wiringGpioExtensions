@@ -154,11 +154,17 @@ void PwmSetClock(int divisor)
 	pwmSetClock(divisor);
 }
 
-extern void PwmSetFrequency(int pin, float frequency)
+void PwmSetFrequency(int pin, float frequency)
 {
 	pwmSetFrequency(pin, frequency);
 }
-	
+
+
+float PwmGetFrequency(int pin)
+{
+	pwmGetFrequency(pin);
+}
+
 extern void PwmSetRange(unsigned int range)
 {
 	pwmSetRange(range);
@@ -167,6 +173,11 @@ extern void PwmSetRange(unsigned int range)
 int PwmGetRange(int pin)
 {
 	return pwmGetRange(pin);
+}
+
+int PwmIsHardwarePwmPin(int pin)
+{
+	return pwmIsHardwarePwmPin(pin);	
 }
 
 #pragma endregion

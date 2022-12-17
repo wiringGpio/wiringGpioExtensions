@@ -145,7 +145,7 @@ bool StepDriver::LoadFromXml(const char* sequenceXml, const char* pinsXml)
 			MaxDelay = 50.0;
 	}
 	
-	//  see if we have polarity elements
+	//  if this is a bipolar stepper, we should have an HBridge element
 	XMLElement* polarityElement = rootElement->FirstChildElement("HBridge");
 	while (polarityElement != NULL)
 	{

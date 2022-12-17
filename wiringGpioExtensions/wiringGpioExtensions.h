@@ -76,9 +76,13 @@ extern "C" {
 	
 	extern void PwmSetFrequency(int pin, float frequency);
 	
+	extern float PwmGetFrequency(int pin);
+	
 	extern void PwmSetRange(unsigned int range);	//  TODO
 	
 	extern int PwmGetRange(int pin);
+	
+	extern int PwmIsHardwarePwmPin(int pin);
 		
 #pragma endregion
 
