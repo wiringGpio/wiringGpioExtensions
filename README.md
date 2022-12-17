@@ -7,11 +7,11 @@ The wiringGpioExtensions library interface mimics the wiringPi library. Most fun
 
     main()
     {
-	    WiringGpioSetupPhys();  // call instead of wiringPiSetupPhys()
-	    PinMode(15, PINMODE_OUTPUT);  // call instead of pinMode()
-	    DigitalWrite(15,1); // call instead of digitalWrite()
-	    Mcp23017Setup(1,100,0x20);	// call instead of mcp23017Setup()
-	    DigitalWrite(101,1);		// you get the idea ...    
+	    WiringGpioSetupPhys();     // call instead of wiringPiSetupPhys()
+	    PinMode(15, OUTPUT);       // call instead of pinMode()
+	    DigitalWrite(15,1);        // call instead of digitalWrite()
+	    Mcp23017Setup(1,100,0x20); // call instead of mcp23017Setup()
+	    DigitalWrite(101,1);       // you get the idea ...    
     }
 
   
