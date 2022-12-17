@@ -12,7 +12,7 @@ AR := ar
 OBJCOPY := objcopy
 
 #Additional flags
-PREPROCESSOR_MACROS := NDEBUG=1 RELEASE=1
+PREPROCESSOR_MACROS := NDEBUG=1 RELEASE=1 JETSON
 INCLUDE_DIRS := ../../wiringGpioExtensions
 LIBRARY_DIRS := ../../wiringGpioExtensions/ReleaseJet
 LIBRARY_NAMES := wiringJet pthread wiringGpioExtensions
