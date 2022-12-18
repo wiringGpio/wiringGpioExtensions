@@ -8,7 +8,7 @@
     </CustomSourceDirectories>
     <AutoProgramSPIFFSPartition>true</AutoProgramSPIFFSPartition>
     <BuildHost>
-      <HostName>nanoDev</HostName>
+      <HostName>nanoA203b</HostName>
       <Transport>SSH</Transport>
       <UserName>nano</UserName>
     </BuildHost>

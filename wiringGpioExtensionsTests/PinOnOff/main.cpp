@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	WiringGpioSetLoggingCallback(WriteLogToConsole);
 	
 	int retVal = WiringGpioSetupPhys();
-	if (retVal != 0)
+	if (retVal < 0)
 		return retVal;
 	
 	return PinOnOffSampleMain(argc, argv);
